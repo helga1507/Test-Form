@@ -1,0 +1,187 @@
+.modal-autorization
+  background: url("../img/bg.jpg") left top repeat
+  .modal-dialog
+    width: 350px
+    max-width: 96%
+    background-color: $white
+    border-radius: 3px
+    padding: 20px 15px 25px
+    box-shadow: 0 0 10px 0 rgba(black, .2)
+    border: 1px solid #e0e0e0
+    animation: for-modal .15s linear
+    +breakpoint(large)
+      margin-top: 100px
+    +breakpoint(small)
+      margin-top: 30px
+    &::before
+      +psevdo
+      z-index: -1
+      width: calc(100% - 2px)
+      height: 100%
+      top: 4px
+      left: 1px
+      background-color: $white
+      border-radius: 3px
+      border: 1px solid #e0e0e0
+    &::after
+      +psevdo
+      z-index: -2
+      width: calc(100% - 4px)
+      height: 100%
+      top: 5px
+      left: 2px
+      background-color: $white
+      border-radius: 3px
+      border: 1px solid #e0e0e0
+  &__close
+    position: absolute
+    border: none
+    text-align: center
+    cursor: pointer
+    z-index: 2
+    top: 10px
+    right: 10px
+    width: 13px
+    height: 13px
+    border-radius: 50%
+    background-color: #cccccc
+    padding: 2.5px
+    img
+      vertical-align: top
+  &__body
+    width: 220px
+    margin: 0 auto
+  &__person
+    width: 58px
+    height: 58px
+    border-radius: 50%
+    background-color: #f4f4f4
+    margin: 0 auto 3px
+    box-shadow: inset 0 0 5px 0 rgba(0,0,0,0.2)
+  &__form
+    &__input-block
+      border: 1px solid #e5e5e8
+      border-radius: 3px
+      margin-top: 12px
+      +flex-between
+      &.valid
+        border-color: #93c273
+        box-shadow: 0 0 5px 1px rgba(#93c273,.5)
+    &__label
+      width: 30px
+      display: inline-block
+      text-align: center
+      position: relative
+      border-right: 1px solid #e5e5e8
+      &::after
+        +psevdo
+        width: 7px
+        height: 7px
+        left: 92%
+        top: 40%
+        border-left: 1px solid #e5e5e8
+        border-top: 1px solid #e5e5e8
+        background-color: $white
+        transform: rotate(135deg)
+      &::before
+        content: ''
+        height: 100%
+        display: inline-block
+        vertical-align: middle
+      img
+        vertical-align: middle
+    &__input
+      border: none
+      line-height: 1.2em
+      padding: 7px 10px
+      width: 185px
+    &__forgot
+      color: #999999
+      font-size: 12px
+      margin-top: 5px
+    &__footer
+      margin-top: 15px
+      +flex-center-between
+    &__remember
+      width: 135px
+      &_check img
+        vertical-align: middle
+      &_label
+        color: #999999
+        font-size: 12px
+        position: relative
+      input[name="remember"]
+        display: none
+      input[name="remember"] + &_label
+        padding: 0 0 0 50px
+        cursor: pointer
+      input[name="remember"] + &_label::before
+        +psevdo
+        top: 0px
+        left: 0
+        width: 40px
+        height: 15px
+        border-radius: 13px
+        background: #cccccc
+        box-shadow: inset 0 2px 3px rgba(0,0,0,.2)
+        transition: .2s
+      input[name="remember"] + &_label::after
+        +psevdo
+        top: 0px
+        left: 0px
+        width: 15px
+        height: 15px
+        border-radius: 10px
+        background: linear-gradient(to top, #dedede, $white)
+        box-shadow: 0 2px 5px rgba(0,0,0,.3)
+        transition: .2s
+      input[name="remember"]:checked + &_label::before
+        background: #96c676
+      input[name="remember"]:checked + &_label::after
+        left: 26px
+    &__button
+      width: 60px
+      color: $white
+      background-color: #cccccc
+      border-radius: 3px
+      text-align: center
+      padding: 5px
+      border: none
+      box-shadow: 0 2px #bcbcbc
+      &:not([disabled])
+        background-color: #93c273
+  &__footer
+    text-align: center
+    font-size: 12px
+    position: absolute
+    top: 105%
+    width: 100%
+    span
+      color: #999999
+    a
+      color: #72985a
+
+#senk
+  .modal-dialog
+    width: 350px
+    max-width: 96%
+    background-color: $white
+    border-radius: 3px
+    padding: 20px 15px 25px
+    box-shadow: 0 0 10px 0 rgba(black, .2)
+    .modal-title
+      font-size: 28px
+      text-align: center
+    .close
+      position: absolute
+      border: none
+      text-align: center
+      cursor: pointer
+      z-index: 2
+      top: 10px
+      right: 10px
+@keyframes for-modal
+  0%
+    transform: translate(0, -25%)
+  100%
+    transform: translate(0, 0)

@@ -1,0 +1,32 @@
+.modal.fade.modal-autorization#modal-autorization(tabindex="-1",role="dialog")
+  .modal-dialog
+    .modal-autorization__close(data-dismiss="modal")
+      img(src="assets/img/icon-delete.png",alt="")
+    .modal-autorization__body
+      .modal-autorization__person
+        img(src="assets/img/person.png",alt="")
+      form.modal-autorization__form#modal-autorization__form(action="mailer.php",method="post")
+        .modal-autorization__form__input-block
+          label.modal-autorization__form__label(for="modal-autorization__login")
+            img(src="assets/img/icon-user.png",alt="")
+          input.modal-autorization__form__input#modal-autorization__login(type="email", placeholder="chavroka@gmail.com",name="login")
+        .modal-autorization__form__input-block
+          label.modal-autorization__form__label(for="modal-autorization__password")
+            img(src="assets/img/icon-password.png",alt="")
+          input.modal-autorization__form__input#modal-autorization__password(type="password", placeholder="password",name="password")
+        a.modal-autorization__form__forgot(href="#") Forgot your password?
+        .modal-autorization__form__footer
+          .modal-autorization__form__remember
+            span.modal-autorization__form__remember_check
+              img(src="assets/img/icon-check.png",alt="")
+            input#modal-autorization__remember(type="checkbox", name="remember", checked)
+            label.modal-autorization__form__remember_label(for="modal-autorization__remember") Remember?
+          button.modal-autorization__form__button#modal-autorization__form__button(type="submit",disabled) Sign In
+    .modal-autorization__footer
+      span Not a registered user yet?
+      a(href="#")  Sign up now!
+.modal.fade#senk(tabindex="-1",role="dialog")
+  .modal-dialog
+    button.close(type="button",data-dismiss="modal") X
+    .modal-title Вход успешно выполнен
+

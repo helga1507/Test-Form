@@ -1,0 +1,10 @@
+extends ../_template
+
+block variables
+  - var title = 'Форма авторизации'
+
+
+block content
+  .wr.index
+    button.index__button_sing(data-toggle="modal", data-target="#modal-autorization") Sign In
+  include ../common/form
