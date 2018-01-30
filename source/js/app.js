@@ -6,62 +6,57 @@ function validEmail(email) {
 
 //валидация пароля (не меньше 5 символов)
 function validPassword(pass) {
-    return (String(pass).length >= 5) ? true : false;
+    return String(pass).length >= 5;
 }
 
 //поля для ввода логина и пароля
-let login_obj = 'modal-autorization__login', password_obj = 'modal-autorization__password',
-    button_obj = 'modal-autorization__form__button';
+let login_obj = $('#modal-autorization__login'), password_obj = $('#modal-autorization__password'),
+    button_obj = $('#modal-autorization__form__button');
 
 //изменение статуса кнопки
 function state_button(state) {
-    if (state && document.getElementById(button_obj).hasAttribute('disabled')) {
-        $('#' + button_obj).removeAttr('disabled');
+    if (state && button_obj.attr('disabled') !== undefined) {
+        button_obj.removeAttr('disabled');
     }
-    else if (!state && !document.getElementById(button_obj).hasAttribute('disabled')) {
-        $('#' + button_obj).attr('disabled', 'true');
+    else if (!state && button_obj.attr('disabled') === undefined) {
+        button_obj.attr('disabled', 'true');
     }
     return state;
 
 }
+//проверка валидности поля; входные параметры - поле и функция для валидации
+function checkInput(input,nameFunction) {
+    let state = false;
+
+    if (nameFunction(input.val())) {
+        //если поле валидно и у него нет класса valid - добавляем его
+        if (!input.parent('.modal-autorization__form__input-block').hasClass('valid')) {
+            input.parent('.modal-autorization__form__input-block').addClass('valid');
+        }
+        state = true;
+    }
+    else {
+        //если поле не валидно и у него есть класс valid - удаляем его
+        if (input.parent('.modal-autorization__form__input-block').hasClass('valid')) {
+            input.parent('.modal-autorization__form__input-block').removeClass('valid');
+        }
+    }
+
+    //возвращаем состояние поля
+    return state;
+}
 
 //валидация формы
 function validForm(email, password) {
-    email = '#' + email;
-    password = '#' + password;
-    let state_email = false, state_password = false;
 
-    //если поле для логина валидно и у него еще нет класса "valid", то добавляем его
-    if (validEmail($(email).val())) {
-        if (!$(email).parent('.modal-autorization__form__input-block').hasClass('valid')) {
-            $(email).parent('.modal-autorization__form__input-block').addClass('valid');
-        }
-        state_email = true;
-    }
-    else {
-        if ($(email).parent('.modal-autorization__form__input-block').hasClass('valid')) {
-            $(email).parent('.modal-autorization__form__input-block').removeClass('valid');
-        }
-    }
-
-    if (validPassword($(password).val())) {
-        if (!$(password).parent('.modal-autorization__form__input-block').hasClass('valid')) {
-            $(password).parent('.modal-autorization__form__input-block').addClass('valid');
-        }
-        state_password = true;
-    }
-    else {
-        if ($(password).parent('.modal-autorization__form__input-block').hasClass('valid')) {
-            $(password).parent('.modal-autorization__form__input-block').removeClass('valid');
-        }
-    }
+    let state_email = checkInput(email,validEmail);
+    let state_password = checkInput(password,validPassword);
 
     if (state_email && state_password) {
         return state_button(true);
     }
 
-    state_button(false);
-    return false;
+    return state_button(false);
 
 }
 
@@ -95,6 +90,7 @@ $('#modal-autorization__form').submit(function (e) {
             $('#senk').modal('show');
         }
     });*/
+    //очищаем форму, закрываем модальные окна и открываем окно о успешном входе
     this.reset();
     $('.modal').modal('hide');
     $('#senk').modal('show');
